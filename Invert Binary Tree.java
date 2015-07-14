@@ -30,6 +30,7 @@
  * }
  */
 public class Solution {
+    //recursion
     public TreeNode invertTree(TreeNode root) {
         if(root != null) {
         	TreeNode temp;
@@ -40,5 +41,25 @@ public class Solution {
         	invertTree(root.right);
         }
         return root;
+    }
+    
+    //non-recursion
+    public TreeNode invertTreeNoRecursion(TreeNode root) {
+    	Queue<TreeNode> treeQueue =  new LinkedList<>();
+    	treeQueue.offer(root);
+    	while(!treeQueue.isEmpty()) {
+    		TreeNode p, pTmp;
+    		p = treeQueue.poll();
+    		if(p != null) {
+    			pTmp = p.left;
+    			p.left = p.right;
+    			p.right = pTmp;
+    			if(p.left != null)
+    				treeQueue.offer(p.left);
+    			if(p.right != null)
+    				treeQueue.offer(p.right);
+    		}
+    	}
+    	return root;
     }
 }
