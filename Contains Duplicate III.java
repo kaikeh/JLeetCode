@@ -17,7 +17,8 @@ public class Solution {
         
         for(int j=0; j<nums.length; j++) {
             SortedSet<Long> subSet =  set.subSet((long)nums[j]-t, (long)nums[j]+t+1);
-            if(!subSet.isEmpty()) return true;
+            if(!subSet.isEmpty()) 
+                return true;
             
             if(j>=k) {
                 set.remove((long)nums[j-k]);
