@@ -12,27 +12,35 @@
 
 //Solution
 public class Solution {
+    public boolean isValid(char c){
+        if(c >= 'a' && c <= 'z') 
+            return true;
+        if(c >= '0' && c <= '9') 
+            return true;
+        return false;
+    }
     public boolean isPalindrome(String s) {
-        String change = s.toLowerCase();
-		char c1 = 'a',c2 = 'b';
-		int length = s.length();
-		int i=0,j=length-1;
-		if(s.length() <= 1)
-			return true;
-		while(i<j) {
-			for(;i<j;i++) {
-				c1 = change.charAt(i);
-				if(c1<'a' || c1>'z')
-					break;
-			}
-			for(;i<j;j--) {
-				c2 = change.charAt(j);
-				if(c2<'a' || c2>'z')
-					break;
-			}
-			if(c1 != c2)
-				return false;
-		}
-		return true;
+        if(s.equals("")) 
+        	return true;
+        s = s.toLowerCase();
+        int len = s.length();
+        int left = 0, right = len - 1;
+        while(left < right){
+            while(!isValid(s.charAt(left))){
+                left++;
+                if(left >= right) 
+                    return true;
+            } 
+            while(!isValid(s.charAt(right))){
+                right--;
+                if(left >= right) 
+                    return true;
+            }
+            if(s.charAt(left) != s.charAt(right)) 
+                return false;
+            left++;
+            right--;
+        }
+        return true;
     }
 }
